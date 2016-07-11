@@ -12,7 +12,8 @@ public class LineModel extends BaseEntity {
 
 	private Integer id;
 	private String name; // 线路名称
-//	private Integer city_id;
+	private int cityId;
+	private String cityName;
 //	private Integer company_id;
 //	private Integer del_status;
 
@@ -45,13 +46,32 @@ public class LineModel extends BaseEntity {
 		this.name = name;
 	}
 
-//	public Integer getCity_id() {
-//		return city_id;
-//	}
-//
-//	public void setCity_id(Integer cityId) {
-//		city_id = cityId;
-//	}
+
+
+	public int getCityId() {
+		return cityId;
+	}
+
+
+
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
+	}
+
+
+
+	public String getCityName() {
+		return cityName;
+	}
+
+
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+
+ 
 //
 //	public Integer getDel_status() {
 //		return del_status;

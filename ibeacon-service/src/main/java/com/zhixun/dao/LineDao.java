@@ -48,9 +48,10 @@ public class LineDao extends BaseDao {
 		int lin = 0;
 		this.connect();
 		try {
-			String sql = "INSERT IGNORE INTO b_line(name) VALUES( ? )";
+			String sql = "INSERT IGNORE INTO b_line(name,city_id) VALUES( ? ,? )";
 			pre = con.prepareStatement(sql);
-			pre.setString(1, line.getName()); 
+			pre.setString(1, line.getName());
+			pre.setInt(2, line.getCityId()); 
 			lin = pre.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -29,7 +29,7 @@ public class ReadLineData extends ReadExcelUtil {
 			sheet.getLastRowNum();
 			Iterator<Row> rows = sheet.rowIterator();
 
-			list = parseRow(rows);
+//			list = parseRow(rows);
 			if (list != null && !list.isEmpty()) {
 				System.out.println(sheet.getSheetName() + "--执行导入");
 
@@ -39,12 +39,33 @@ public class ReadLineData extends ReadExcelUtil {
 			}
 		}
 	}
+	
+	public void execExcelData(String fileName,String[] cityNames) {
+		List<Sheet> sheets = readExcel(fileName);
+		for(int i = 0 ;i <sheets.size() ;i++){
+			List<LineModel> list = new ArrayList<LineModel>();
+			sheets.get(i).getLastRowNum();
+			Iterator<Row> rows = sheets.get(i).rowIterator();
+			
+			list = parseRow(rows,cityNames[i]);
+			 
+			if (list != null && !list.isEmpty()) {
+				System.out.println(sheets.get(i).getSheetName() + "--执行导入城市"+cityNames[i]);
+
+				TermController.executeLine(list);
+			} else {
+				System.out.println(sheets.get(i).getSheetName() + "--跳过城市"+cityNames[i]);
+			}
+			
+			i++;
+		}
+	}
 
 	/**
 	 * @param row
 	 * @return
 	 */
-	private List<LineModel> parseRow(Iterator<Row> rows) {
+	private List<LineModel> parseRow(Iterator<Row> rows,String cityname) {
 
 		List<LineModel> list = new ArrayList<LineModel>();
 		// 读取每一行
@@ -77,6 +98,7 @@ public class ReadLineData extends ReadExcelUtil {
 			if (StringUtils.isEmpty(model.getName()) || StringUtils.equalsIgnoreCase(model.getName(), "线路名称")) {
 				continue;
 			}
+			model.setCityName(cityname);
 			list.add(model);
 		}
 		return list;

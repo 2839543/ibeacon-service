@@ -2,6 +2,7 @@ package com.zhixun;
 
 import com.zhixun.util.ReadAttributeInfoData;
 import com.zhixun.util.ReadBuslineLocationDescData;
+import com.zhixun.util.ReadCityData;
 import com.zhixun.util.ReadCommercialCompetitiveEnvData;
 import com.zhixun.util.ReadLineData;
 import com.zhixun.util.ReadMediaEnvData;
@@ -17,11 +18,12 @@ public class Main {
 
 		// 已部署 原始数据入库
 
-//		String cityFilePath = "D:\\tmp\\test\\城市基本信息.xlsx";
-//		new ReadCityData().execExcelData(cityFilePath);
+		String cityFilePath = "D:\\tmp\\test\\城市基本信息.xlsx";
+		new ReadCityData().execExcelData(cityFilePath);
 		
-//		String lineFilePath = "D:\\tmp\\test\\线路基本信息-上海.xlsx";
-//		new ReadLineData().execExcelData(lineFilePath);
+		String lineFilePath = "D:\\tmp\\test\\线路基本信息-上海.xlsx";
+		String[] citys= new String[]{"上海","北京"};
+		new ReadLineData().execExcelData(lineFilePath,citys);
 		
 		
 		String ownFilePath = "D:\\tmp\\test\\P4-公司自有媒体资源信息.xlsx";
